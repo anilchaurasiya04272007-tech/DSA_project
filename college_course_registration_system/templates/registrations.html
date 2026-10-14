@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}Registrations{% endblock %}
+{% block content %}
+<div class="page-head"><div><div class="eyebrow">ADMIN • REGISTRATION RECORDS</div><h1>Registration Records</h1><p class="muted">Track which students selected which courses.</p></div></div>
+<div class="panel"><table><thead><tr><th>Student</th><th>Roll No.</th><th>Course</th><th>Credits</th><th>Registered On</th></tr></thead><tbody>
+{% for r in registrations %}<tr><td><b>{{ r.name }}</b><small>{{ r.email }}</small></td><td>{{ r.roll_no }}</td><td>{{ r.code }} — {{ r.course_name }}</td><td>{{ r.credits }}</td><td>{{ r.registered_at }}</td></tr>{% endfor %}
+</tbody></table></div>
+{% endblock %}

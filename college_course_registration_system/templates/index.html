@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}CourseFlow | College Course Registration{% endblock %}
+{% block content %}
+<section class="hero">
+    <div class="hero-copy">
+        <div class="pill">SMART ACADEMIC PORTAL</div>
+        <h1>College Course<br><span>Registration System</span></h1>
+        <p>One simple platform for students to discover courses, register online, manage credits and view their academic profile.</p>
+        <div class="hero-actions">
+            <a class="btn primary" href="{{ url_for('login') }}">Student Portal →</a>
+            <a class="btn secondary" href="{{ url_for('admin_login') }}">Admin Portal</a>
+        </div>
+    </div>
+    <div class="hero-card">
+        <div class="mock-top"><span>Course Registration</span><b>●</b></div>
+        <div class="mock-stat"><small>Current Semester</small><strong>Semester 02</strong></div>
+        <div class="mock-course"><span>BCA202</span><b>DBMS</b><em>4 Credits</em></div>
+        <div class="mock-course"><span>BCA203</span><b>Python Programming</b><em>3 Credits</em></div>
+        <div class="progress"><span></span></div>
+        <small>Registration progress</small>
+    </div>
+</section>
+
+<section class="stats">
+    <div><strong>{{ course_count }}</strong><span>Courses</span></div>
+    <div><strong>{{ student_count }}</strong><span>Students</span></div>
+    <div><strong>{{ registration_count }}</strong><span>Registrations</span></div>
+</section>
+
+<section class="section">
+    <div class="section-head"><div><div class="eyebrow">KEY MODULES</div><h2>Everything in one place</h2></div></div>
+    <div class="feature-grid">
+        <article><div class="icon">01</div><h3>Course Discovery</h3><p>Browse course code, instructor, credits, semester and available seats.</p></article>
+        <article><div class="icon">02</div><h3>Easy Registration</h3><p>Register or drop courses with duplicate and seat-availability checks.</p></article>
+        <article><div class="icon">03</div><h3>Admin Control</h3><p>Manage courses, students and registration records from one dashboard.</p></article>
+    </div>
+</section>
+{% endblock %}

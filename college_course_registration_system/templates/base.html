@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}CourseFlow{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+<nav class="navbar">
+    <a class="brand" href="{{ url_for('index') }}"><span>CF</span> CourseFlow</a>
+    <div class="navlinks">
+        {% if session.get('student_id') %}
+            <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a href="{{ url_for('courses') }}">Courses</a>
+            <a href="{{ url_for('my_courses') }}">My Courses</a>
+            <a href="{{ url_for('profile') }}">Profile</a>
+            <a class="nav-btn" href="{{ url_for('logout') }}">Logout</a>
+        {% elif session.get('admin') %}
+            <a href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a>
+            <a href="{{ url_for('admin_courses') }}">Courses</a>
+            <a href="{{ url_for('students') }}">Students</a>
+            <a href="{{ url_for('registrations') }}">Registrations</a>
+            <a class="nav-btn" href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+            <a href="{{ url_for('login') }}">Student Login</a>
+            <a href="{{ url_for('admin_login') }}">Admin</a>
+        {% endif %}
+    </div>
+</nav>
+
+<main class="page">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-wrap">
+            {% for category, message in messages %}
+                <div class="flash {{ category }}">{{ message }} <button onclick="this.parentElement.remove()">×</button></div>
+            {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+</main>
+
+<footer>College Course Registration System • HTML • CSS • JavaScript • Python Flask • SQLite</footer>
+</body>
+</html>

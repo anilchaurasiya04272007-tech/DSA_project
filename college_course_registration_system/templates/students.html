@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}Students{% endblock %}
+{% block content %}
+<div class="page-head"><div><div class="eyebrow">ADMIN • STUDENT DIRECTORY</div><h1>Students</h1><p class="muted">All student accounts registered in the system.</p></div></div>
+<div class="panel"><table><thead><tr><th>Name</th><th>Roll No.</th><th>Email</th><th>Program</th><th>Semester</th></tr></thead><tbody>
+{% for s in students %}<tr><td><b>{{ s.name }}</b></td><td>{{ s.roll_no }}</td><td>{{ s.email }}</td><td>{{ s.course }}</td><td>{{ s.semester }}</td></tr>{% endfor %}
+</tbody></table></div>
+{% endblock %}

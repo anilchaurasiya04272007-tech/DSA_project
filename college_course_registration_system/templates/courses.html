@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Available Courses{% endblock %}
+{% block content %}
+<div class="page-head"><div><div class="eyebrow">COURSE CATALOG</div><h1>Available Courses</h1><p class="muted">Search and register for the courses you need.</p></div></div>
+<div class="toolbar"><input id="courseSearch" class="search" placeholder="🔎 Search by course name, code or instructor..."><select id="semesterFilter"><option value="">All semesters</option><option value="2">Semester 2</option><option value="3">Semester 3</option></select></div>
+<div class="course-grid" id="courseGrid">
+{% for c in courses %}
+<article class="course-card" data-search="{{ c.code }} {{ c.name }} {{ c.instructor }}" data-semester="{{ c.semester }}">
+    <div class="course-top"><span class="course-code">{{ c.code }}</span><span class="credits">{{ c.credits }} Credits</span></div>
+    <h3>{{ c.name }}</h3><p>Instructor: <b>{{ c.instructor }}</b></p>
+    <div class="course-meta"><span>Semester {{ c.semester }}</span><span>{{ c.enrolled }}/{{ c.seats }} seats</span></div>
+    <div class="seatbar"><span style="width: {{ ((c.enrolled / c.seats) * 100)|round|int }}%"></span></div>
+    {% if c.is_registered %}
+        <button class="btn disabled full" disabled>✓ Already Registered</button>
+    {% else %}
+        <form method="POST" action="{{ url_for('register_course', course_id=c.id) }}">
+            <button class="btn primary full" onclick="return confirmRegister('{{ c.name }}')">Register Now</button>
+        </form>
+    {% endif %}
+</article>
+{% endfor %}
+</div>
+<div id="noResults" class="empty hidden">No matching courses found.</div>
+{% endblock %}

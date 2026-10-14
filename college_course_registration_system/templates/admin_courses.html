@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Manage Courses{% endblock %}
+{% block content %}
+<div class="page-head"><div><div class="eyebrow">ADMIN • COURSE MANAGEMENT</div><h1>Manage Courses</h1></div></div>
+<div class="panel add-panel"><h2>Add New Course</h2>
+<form method="POST" class="admin-form">
+<input name="code" placeholder="Course Code (e.g. BCA401)" required>
+<input name="name" placeholder="Course Name" required>
+<input name="instructor" placeholder="Instructor" required>
+<input name="credits" type="number" min="1" max="6" placeholder="Credits" required>
+<input name="semester" type="number" min="1" max="8" placeholder="Semester" required>
+<input name="seats" type="number" min="1" placeholder="Seats" required>
+<button class="btn primary">+ Add Course</button>
+</form></div>
+<div class="panel"><div class="panel-head"><h2>Course List</h2></div>
+<table><thead><tr><th>Code</th><th>Course</th><th>Instructor</th><th>Credits</th><th>Sem</th><th>Seats</th><th>Action</th></tr></thead><tbody>
+{% for c in courses %}<tr><td><b>{{ c.code }}</b></td><td>{{ c.name }}</td><td>{{ c.instructor }}</td><td>{{ c.credits }}</td><td>{{ c.semester }}</td><td>{{ c.seats }}</td><td><form method="POST" action="{{ url_for('delete_course', course_id=c.id) }}" onsubmit="return confirm('Delete this course?')"><button class="text-danger">Delete</button></form></td></tr>{% endfor %}
+</tbody></table></div>
+{% endblock %}

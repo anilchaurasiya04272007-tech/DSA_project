@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Admin Login{% endblock %}
+{% block content %}
+<div class="auth-page"><div class="auth-card">
+<div class="eyebrow">ADMIN PORTAL</div><h1>System Control</h1><p class="muted">Manage academic data securely.</p>
+<form method="POST" class="form">
+<label>Username<input name="username" placeholder="admin" required></label>
+<label>Password<input type="password" name="password" placeholder="••••••••" required></label>
+<button class="btn primary full">Admin Login</button>
+</form>
+<div class="demo-box"><b>Demo credentials</b><br>Username: admin<br>Password: admin123</div>
+</div></div>
+{% endblock %}

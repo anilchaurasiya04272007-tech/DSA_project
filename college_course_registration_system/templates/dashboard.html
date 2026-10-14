@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Student Dashboard{% endblock %}
+{% block content %}
+<div class="page-head"><div><div class="eyebrow">STUDENT DASHBOARD</div><h1>Hello, {{ student.name }} 👋</h1><p class="muted">Manage your academic registration from here.</p></div><a class="btn primary" href="{{ url_for('courses') }}">+ Register Course</a></div>
+<div class="dashboard-grid">
+    <div class="info-card"><small>ROLL NUMBER</small><strong>{{ student.roll_no }}</strong><span>{{ student.course }} • Semester {{ student.semester }}</span></div>
+    <div class="info-card"><small>REGISTERED COURSES</small><strong>{{ registered|length }}</strong><span>Active registrations</span></div>
+    <div class="info-card"><small>TOTAL CREDITS</small><strong>{{ total_credits }}</strong><span>This semester</span></div>
+</div>
+<div class="panel">
+    <div class="panel-head"><h2>My Current Courses</h2><a href="{{ url_for('my_courses') }}">View all →</a></div>
+    {% if registered %}
+    <div class="course-list">
+    {% for c in registered %}
+        <div class="course-row"><div class="code">{{ c.code }}</div><div><b>{{ c.name }}</b><small>{{ c.instructor }} • {{ c.credits }} credits</small></div><span class="status">Registered</span></div>
+    {% endfor %}
+    </div>
+    {% else %}<div class="empty">No courses registered yet. Start by exploring available courses.</div>{% endif %}
+</div>
+{% endblock %}

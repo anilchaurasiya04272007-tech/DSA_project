@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Student Login{% endblock %}
+{% block content %}
+<div class="auth-page">
+<div class="auth-card">
+    <div class="eyebrow">STUDENT PORTAL</div>
+    <h1>Welcome back 👋</h1>
+    <p class="muted">Login to manage your course registrations.</p>
+    <form method="POST" class="form">
+        <label>Email<input type="email" name="email" placeholder="student@college.com" required></label>
+        <label>Password<input type="password" name="password" placeholder="••••••••" required></label>
+        <button class="btn primary full">Login</button>
+    </form>
+    <div class="demo-box"><b>Demo login</b><br>Email: student@college.com<br>Password: 123456</div>
+</div>
+</div>
+{% endblock %}

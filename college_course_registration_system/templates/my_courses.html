@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}My Courses{% endblock %}
+{% block content %}
+<div class="page-head"><div><div class="eyebrow">MY REGISTRATIONS</div><h1>My Courses</h1><p class="muted">Your currently registered subjects.</p></div><div class="credit-badge">{{ total_credits }} Total Credits</div></div>
+<div class="panel">
+{% if courses %}
+{% for c in courses %}
+<div class="course-row"><div class="code">{{ c.code }}</div><div><b>{{ c.name }}</b><small>{{ c.instructor }} • {{ c.credits }} credits • Registered {{ c.registered_at[:10] }}</small></div><form method="POST" action="{{ url_for('drop_course', course_id=c.id) }}" onsubmit="return confirmDrop('{{ c.name }}')"><button class="btn danger">Drop</button></form></div>
+{% endfor %}
+{% else %}<div class="empty">You have not registered for any course yet.</div>{% endif %}
+</div>
+{% endblock %}

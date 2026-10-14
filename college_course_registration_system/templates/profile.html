@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+<div class="page-head"><div><div class="eyebrow">ACCOUNT</div><h1>Student Profile</h1></div></div>
+<div class="profile-card">
+    <div class="avatar">{{ student.name[0]|upper }}</div>
+    <div><h2>{{ student.name }}</h2><p class="muted">{{ student.email }}</p></div>
+</div>
+<div class="detail-grid">
+    <div><small>Roll Number</small><b>{{ student.roll_no }}</b></div>
+    <div><small>Program</small><b>{{ student.course }}</b></div>
+    <div><small>Semester</small><b>{{ student.semester }}</b></div>
+    <div><small>Email</small><b>{{ student.email }}</b></div>
+</div>
+{% endblock %}
